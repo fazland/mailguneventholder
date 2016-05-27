@@ -1,0 +1,22 @@
+{
+  "name": "mailguneventholder",
+  "version": "1.0.0",
+  "description": "This is a node project to retrieve event log on mailgun and store them on mongodb collection",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fazland/mailguneventholder.git"
+  },
+  "author": "Giovanni Albero <giovanni.albero@fazland.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fazland/mailguneventholder/issues"
+  },
+  "homepage": "https://github.com/fazland/mailguneventholder#readme",
+  "dependencies": {
+    "commander": "^2.9.0"
+  }
+}
