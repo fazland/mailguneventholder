@@ -12,11 +12,16 @@
   },
   "author": "Giovanni Albero <giovanni.albero@fazland.com>",
   "license": "MIT",
+  "bin": {
+    "mailgun-holder": "./index.js"
+  },
   "bugs": {
     "url": "https://github.com/fazland/mailguneventholder/issues"
   },
   "homepage": "https://github.com/fazland/mailguneventholder#readme",
   "dependencies": {
-    "commander": "^2.9.0"
+    "commander": "^2.9.0",
+    "mongodb": "^2.1.20",
+    "request": "^2.72.0"
   }
 }
