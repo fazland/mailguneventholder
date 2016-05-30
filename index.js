@@ -35,13 +35,12 @@ function doRequest(url) {
                 }
             }, function (error, response, body) {
                 jsonObj = JSON.parse(body);
-                if (program.messageId == null) {
-                    mongodbHelper.db.collection(config.mongodb.collection).insertMany(jsonObj.items);
-                    console.log('inserted %d', jsonObj.items.length);
-                    console.log('Next link %s', jsonObj.paging.next);
-                } else {
-                    program.messageId = null;
-                }
+
+                mongodbHelper.db.collection(config.mongodb.collection).insertMany(jsonObj.items);
+
+                console.log('inserted %d', jsonObj.items.length);
+                console.log('Next link %s', jsonObj.paging.next);
+
                 if (url !== jsonObj.paging.next) {
                     doRequest(jsonObj.paging.next);
                 }
