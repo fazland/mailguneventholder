@@ -9,10 +9,17 @@ program
     .option('-a, --apikey <api-key>', 'Mailgun\'s api-key')
     .option('-d, --domainname <domain-name>', 'Domain name to retrieve event log')
     .option('-i, --messageId <message-id>', 'Start message id, from this id start to retrieve events')
+    .option('-u, --starturl <start-url>', 'Start url, from this url start to retrieve events')
     .parse(process.argv)
 ;
 
-var initialUrl = 'https://api.mailgun.net/v3/' + program.domainname + '/events';
+var initialUrl = '';
+
+if (program.starturl != null) {
+    initialUrl = program.starturl;
+} else {
+    initialUrl = 'https://api.mailgun.net/v3/' + program.domainname + '/events';
+}
 
 doRequest(initialUrl);
 
@@ -28,10 +35,10 @@ function doRequest(url) {
                 }
             }, function (error, response, body) {
                 jsonObj = JSON.parse(body);
-                console.log(jsonObj);
                 if (program.messageId == null) {
                     mongodbHelper.db.collection(config.mongodb.collection).insertMany(jsonObj.items);
                     console.log('inserted %d', jsonObj.items.length);
+                    console.log('Next link %s', jsonObj.paging.next);
                 } else {
                     program.messageId = null;
                 }
